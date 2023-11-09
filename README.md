@@ -3,7 +3,9 @@ Aquí se subirán los avances de mi proyecto
 
 El siguiente proyecto esta basado en su totalidad en el videojuego MOBA "League of Leyends", sin embargo de ser necesario cambiará su enfoque.
 
-#Primer Avance
+
+// PRIMER AVANCE
+
 Este primer avance contiene 3 clases
 - Invocador
 - Minion
