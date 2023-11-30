@@ -1,0 +1,709 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Invocador {
+protected:
+    string nombre_invocador;
+    int nivel;
+    int rank;
+    int campeones_adquiridos;
+
+public:
+public:
+    // Constructor predeterminado
+    Invocador() : nombre_invocador(""), nivel(0), rank(0), campeones_adquiridos(0) {}
+
+    // Constructor con parámetros
+    Invocador(string nom_inv, int lvl, int rkn, int num_camp);
+    
+    // Métodos
+    void buscar_partida();
+    void reportar();
+
+    // Getters
+    string getNombre_invocador() const;
+    int getNivel() const;
+    int getRank() const;
+    int getCampeones_adquiridos() const;
+
+    // Setters
+    void setNombre_invocador(string nom_inv);
+    void setNivel(int lvl);
+    void setRank(int rnk);
+    void setCampeones_adquiridos(int num_camp);
+};
+
+// Definición del constructor con parámetros fuera de la declaración de la clase
+Invocador::Invocador(string nom_inv, int lvl, int rkn, int num_camp)
+    : nombre_invocador(nom_inv), nivel(lvl), rank(rkn), campeones_adquiridos(num_camp) {}
+// Métodos
+void Invocador::buscar_partida() {
+    cout << "El invocador " << nombre_invocador << " de nivel " << nivel << " tiene " << campeones_adquiridos << " campeones adquiridos y está buscando partida" << endl;
+}
+
+void Invocador::reportar() {
+    cout << "El invocador " << nombre_invocador << " desea reportar a un enemigo de rank " << rank << " por ir Yi support troll." << endl;
+}
+
+// Getters
+string Invocador::getNombre_invocador() const {
+    return nombre_invocador;
+}
+
+int Invocador::getNivel() const {
+    return nivel;
+}
+
+int Invocador::getRank() const {
+    return rank;
+}
+
+int Invocador::getCampeones_adquiridos() const {
+    return campeones_adquiridos;
+}
+
+// Setters
+void Invocador::setNombre_invocador(string nom_inv) {
+    nombre_invocador = nom_inv;
+}
+
+void Invocador::setNivel(int lvl) {
+    nivel = lvl;
+}
+
+void Invocador::setRank(int rnk) {
+    rank = rnk;
+}
+
+void Invocador::setCampeones_adquiridos(int num_camp) {
+    campeones_adquiridos = num_camp;
+}
+
+class Equipos : public Invocador {
+private:
+    string campeon;
+    string posicion;
+    Invocador& invocador;  // Cambio aquí
+
+public:
+    // Constructor
+    Equipos(string camp, string pos, Invocador& inv);
+    
+    // Método
+    void buscar_invocadores();
+
+    // Getters
+    string getCampeon() const;
+    string getPosicion() const;
+    Invocador& getInvocador() const;  // Cambio aquí
+
+    // Setters
+    void setCampeon(string camp);
+    void setPosicion(string pos);
+    void setInvocador(Invocador& inv);  // Cambio aquí
+};
+
+// Dentro de la implementación de la clase Equipos
+// Constructor
+Equipos::Equipos(string camp, string pos, Invocador& inv)
+    : campeon(camp), posicion(pos), invocador(inv) {}
+
+// Método
+void Equipos::buscar_invocadores() {
+    cout << "El invocador " << invocador.getNombre_invocador() << " utilizará al campeón " << campeon << " e irá en la posición " << posicion << "." << endl;
+}
+
+// Getters
+string Equipos::getCampeon() const {
+    return campeon;
+}
+
+string Equipos::getPosicion() const {
+    return posicion;
+}
+
+Invocador& Equipos::getInvocador() const {
+    return invocador;
+}
+
+// Setters
+void Equipos::setCampeon(string camp) {
+    campeon = camp;
+}
+
+void Equipos::setPosicion(string pos) {
+    posicion = pos;
+}
+
+void Equipos::setInvocador(Invocador& inv) {
+    invocador = inv;
+}
+
+
+// CLASE TORRETAS
+class Torretas {
+private:
+    int danio_t;
+    int hp_t;
+    int id_t;
+    int num_t;
+
+public:
+    // Constructor
+    Torretas(int danioT, int hpT, int idT, int numT);
+
+    // Métodos
+    void atacarT();
+    void caer();
+    void informacionT();
+
+    // Getters 
+    int getDanio_t() const;
+    int getHp_t() const;
+    int getId_t() const;
+    int getNum_t() const;
+
+    // Setters
+    void setDanio_t(int danioT);
+    void setHp_t(int hpT);
+    void setId_t(int idT);
+    void setNum_t(int numT);
+};
+
+// Constructor
+Torretas::Torretas(int danioT, int hpT, int idT, int numT)
+    : danio_t(danioT), hp_t(hpT), id_t(idT), num_t(numT) {}
+
+// Métodos
+void Torretas::atacarT() {
+    cout << "La torreta " << id_t << " hace " << danio_t << " de daño al jugador." << endl;
+}
+
+void Torretas::caer() {
+    cout << "La torreta " << id_t << " ha caído cuando poseía " << hp_t << " puntos de vida totales." << endl;
+}
+
+void Torretas::informacionT() {
+    cout << "Tiene " << num_t << " torretas las cuales cuentan con " << hp_t << " de vida y hacen " << danio_t << " puntos de daño." << endl;
+}
+
+// Getters
+int Torretas::getDanio_t() const {
+    return danio_t;
+}
+
+int Torretas::getHp_t() const {
+    return hp_t;
+}
+
+int Torretas::getId_t() const {
+    return id_t;
+}
+
+int Torretas::getNum_t() const {
+    return num_t;
+}
+
+// Setters
+void Torretas::setDanio_t(int danioT) {
+    danio_t = danioT;
+}
+
+void Torretas::setHp_t(int hpT) {
+    hp_t = hpT;
+}
+
+void Torretas::setId_t(int idT) {
+    id_t = idT;
+}
+
+void Torretas::setNum_t(int numT) {
+    num_t = numT;
+}
+// CLASE MINIONS
+class Minions {
+private:
+    string tipo_m;
+    int hp_m;
+    int danio_m;
+
+public:
+    // Constructor
+    Minions(string tipoM, int hpM, int danioM);
+
+    // Métodos
+    void atacar_torreta();
+    void soltar_oro();
+    void morirM();
+    void informacionM();
+
+    // Getters
+    string getTipo_m() const;
+    int getHp_m() const;
+    int getdanio_m() const;
+
+    // Setters
+    void setTipo_m(string tipoM);
+    void setHp_m(int hpM);
+    void setDanio_m(int danioM);
+};
+
+// Constructor
+Minions::Minions(string tipoM, int hpM, int danioM)
+    : tipo_m(tipoM), hp_m(hpM), danio_m(danioM) {}
+
+// Métodos
+void Minions::atacar_torreta() {
+    cout << "Un minion de tipo " << tipo_m << " ataca la torreta de la línea inferior." << endl;
+}
+
+void Minions::soltar_oro() {
+    cout << "Un minion tipo " << tipo_m << " hace " << danio_m << " puntos de daño, y suelta 12 de oro." << endl;
+}
+
+void Minions::morirM() {
+    cout << "El support se ha robado un minion tipo " << tipo_m << " cuando tenía " << hp_m << " de vida." << endl;
+}
+
+void Minions::informacionM() {
+    cout << "El minion " << tipo_m << " tiene " << hp_m << " de vida y hace " << danio_m << " puntos de daño." << endl;
+}
+
+// Getters
+string Minions::getTipo_m() const {
+    return tipo_m;
+}
+
+int Minions::getHp_m() const {
+    return hp_m;
+}
+
+int Minions::getdanio_m() const {
+    return danio_m;
+}
+
+// Setters
+void Minions::setTipo_m(string tipoM) {
+    tipo_m = tipoM;
+}
+
+void Minions::setHp_m(int hpM) {
+    hp_m = hpM;
+}
+
+void Minions::setDanio_m(int danioM) {
+    danio_m = danioM;
+}
+// CLASE CRIATURAS
+class Criaturas {
+private:
+    string tipo_c;
+    string nombre_c;
+    int hp_c;
+    int danio_c;
+
+public:
+    // Constructor
+    Criaturas(string tipoC, string nombreC, int hpC, int danioC);
+
+    // Métodos
+    void atacar_jugador();
+    void morirC();
+    void informacionC();
+
+    // Getters
+    string getTipo_c() const;
+    string getNombre_c() const;
+    int getHp_c() const;
+    int getDanio_c() const;
+
+    // Setters
+    void setTipo_c(string tipoC);
+    void setNombre_c(string nombreC);
+    void setHp_c(int hpC);
+    void setDanio_c(int danioC);
+};
+
+// Constructor
+Criaturas::Criaturas(string tipoC, string nombreC, int hpC, int danioC)
+    : tipo_c(tipoC), nombre_c(nombreC), hp_c(hpC), danio_c(danioC) {}
+
+// Métodos
+void Criaturas::atacar_jugador() {
+    cout << "La criatura " << nombre_c << " ataca a un invocador." << endl;
+}
+
+void Criaturas::morirC() {
+    cout << "El jungla se ha robado a la " << nombre_c << " enemiga, la cual tenía " << hp_c << " puntos de vida." << endl;
+}
+
+void Criaturas::informacionC() {
+    cout << "La criatura " << nombre_c << " es de tipo " << tipo_c << ", tiene " << hp_c << " de vida y hace " << danio_c << " puntos de daño." << endl;
+}
+
+// Getters
+string Criaturas::getTipo_c() const {
+    return tipo_c;
+}
+
+string Criaturas::getNombre_c() const {
+    return nombre_c;
+}
+
+int Criaturas::getHp_c() const {
+    return hp_c;
+}
+
+int Criaturas::getDanio_c() const {
+    return danio_c;
+}
+
+// Setters
+void Criaturas::setTipo_c(string tipoC) {
+    tipo_c = tipoC;
+}
+
+void Criaturas::setNombre_c(string nombreC) {
+    nombre_c = nombreC;
+}
+
+void Criaturas::setHp_c(int hpC) {
+    hp_c = hpC;
+}
+
+void Criaturas::setDanio_c(int danioC) {
+    danio_c = danioC;
+}
+// CLASE JUGADOR
+class Jugador : public Invocador {
+private:
+    int nivel_j;
+    int vida_j;
+    int mana_j;
+    int Oro_j;
+
+public:
+    // Constructor
+    Jugador(string nom_inv, int lvlJ, int hpJ, int manaJ, int oroJ);
+
+    // Métodos
+    void atacar();
+    void morir();
+    void tp();
+    
+    // Getters 
+    int getNivel_j() const;
+    int getVida_j() const;
+    int getMana_j() const;
+    int getDinero_j() const;
+
+    // Setters
+    void setNivel_j(int lvlJ);
+    void setVida_j(int hpJ);
+    void setMana_j(int manaJ);
+    void setOro_j(int oroJ);
+};
+
+// Constructor
+Jugador::Jugador(string nom_inv, int lvlJ, int hpJ, int manaJ, int oroJ)
+    : Invocador(nom_inv, 0, 0, 0), nivel_j(lvlJ), vida_j(hpJ), mana_j(manaJ), Oro_j(oroJ) {}
+
+// Métodos
+void Jugador::atacar() {
+    cout << "El ataque Q del jugador " << nombre_invocador << " en el nivel " << nivel_j << " quita 48 puntos de vida y gasta " << mana_j << " de mana." << endl;
+}
+
+void Jugador::morir() {
+    cout << "El jugador " << nombre_invocador << " con " << vida_j << " de vida recibe 235 de daño y muere, ganándole una PENTAKILL al equipo enemigo." << endl;
+}
+
+void Jugador::tp() {
+    cout << "El jugador " << nombre_invocador << " ignora la team fight y va a comprar con " << Oro_j << " de oro." << endl;
+}
+
+// Getters
+int Jugador::getNivel_j() const {
+    return nivel_j;
+}
+
+int Jugador::getVida_j() const {
+    return vida_j;
+}
+
+int Jugador::getMana_j() const {
+    return mana_j;
+}
+
+int Jugador::getDinero_j() const {
+    return Oro_j;
+}
+
+// Setters
+void Jugador::setNivel_j(int lvlJ) {
+    nivel_j = lvlJ;
+}
+
+void Jugador::setVida_j(int hpJ) {
+    vida_j = hpJ;
+}
+
+void Jugador::setMana_j(int manaJ) {
+    mana_j = manaJ;
+}
+
+void Jugador::setOro_j(int oroJ) {
+    Oro_j = oroJ;
+}
+// CLASE PARTIDA
+class Partida {
+private:
+    string tipo_partida;
+    string mapa;
+
+public:
+    // Constructor
+    Partida(string tipo_par, string map);
+
+    // Método
+    void iniciar_partida();
+    
+    // Getters 
+    string getTipo_partida() const;
+    string getMapa() const;
+
+    // Setters
+    void setTipo_partida(string tipo_par);
+    void setMapa(string map);
+};
+
+// Constructor
+Partida::Partida(string tipo_par, string map) : tipo_partida(tipo_par), mapa(map) {}
+
+// Método
+void Partida::iniciar_partida() {
+    cout << "Se iniciará una partida " << tipo_partida << " en el mapa " << mapa << "." << endl;
+}
+
+// Getters
+string Partida::getTipo_partida() const {
+    return tipo_partida;
+}
+
+string Partida::getMapa() const {
+    return mapa;
+}
+
+// Setters
+void Partida::setTipo_partida(string tipo_par) {
+    tipo_partida = tipo_par;
+}
+
+void Partida::setMapa(string map) {
+    mapa = map;
+}
+
+// CLASE OBJETOS_TIENDA
+class Objetos {
+private:
+    string tipo_o;
+    string habilidad_o;
+    int costo;
+
+public:
+    // Constructor
+    Objetos(string tipoO, string habilidadO, int costo);
+
+    // Método
+    void comprar();
+
+    // Getters
+    string getTipo_o() const;
+    string getHabilidad_o() const;
+    int getCosto() const;
+
+    // Setters
+    void setTipo_o(string tipoO);
+    void setHabilidad_o(string HabilidadO);
+    void setCosto(int cost);
+};
+
+// Constructor
+Objetos::Objetos(string tipoO, string habilidadO, int cost) : tipo_o(tipoO), habilidad_o(habilidadO), costo(cost) {}
+
+// Método
+void Objetos::comprar() {
+    cout << "Un invocador ha comprado el objeto " << tipo_o << " al costo de " << costo << " oro, y otorga la habilidad de " << habilidad_o << "." << endl;
+}
+
+// Getters 
+string Objetos::getTipo_o() const {
+    return tipo_o;
+}
+
+string Objetos::getHabilidad_o() const {
+    return habilidad_o;
+}
+
+int Objetos::getCosto() const {
+    return costo;
+}
+
+// Setters 
+void Objetos::setTipo_o(string tipoO) {
+    tipo_o = tipoO;
+}
+
+void Objetos::setHabilidad_o(string habilidadO) {
+    habilidad_o = habilidadO;
+}
+
+void Objetos::setCosto(int cost) {
+    costo = cost;
+}
+
+int main(){
+
+// Invocadores
+    cout <<"---------------------------"<< endl;
+    cout <<" Información del Invocador  "<< endl;
+    cout <<"---------------------------"<< endl;
+    
+    Invocador inv1("LuniiBlue", 56, 0, 36);
+    Invocador inv2("DanKookie", 445, 4, 97);
+    Invocador inv3("RacsoLen", 589, 5, 89);
+    Invocador inv4("Un_Coco", 36, 0, 9);
+    Invocador inv5("Vinz", 07, 0, 9);
+
+    Invocador inv6("NoobMaster69", 69, 3, 47);
+    Invocador inv7("FrankJonesy", 27, 0, 38);
+    Invocador inv8("UnPayasO", 143, 1, 39);
+    Invocador inv9("Una_Milanesa", 208, 3, 8);
+    Invocador inv10("Caramelito", 01, 0, 1);
+
+    inv1.buscar_partida();
+
+    
+    cout << endl;
+
+    // Equipos
+    cout <<"---------------------------"<< endl;
+    cout <<" Creacion del Equipo rojo  "<< endl;
+    cout <<"---------------------------"<< endl;
+
+    // Cambios aquí para usar referencias a Invocador
+    Equipos e1("Neeko", "Support", inv1);
+    Equipos e2("Ezreal", "ADC", inv2);
+    Equipos e4("Maestro Yi", "Jungle", inv4);
+    Equipos e5("Garen", "Top", inv5);
+    Equipos e9("Jax", "Jungle", inv9);
+
+    e1.buscar_invocadores();
+    e2.buscar_invocadores();
+    e4.buscar_invocadores();
+    e5.buscar_invocadores();
+    e9.buscar_invocadores();
+
+    cout << endl;
+
+// Partida
+    cout <<"-------------------------"<< endl;
+    cout <<" Creacion de la Partida"<< endl;
+    cout <<"-------------------------"<< endl;
+    
+    Partida p1("Reclutamiento", "Grieta del Invocador");
+    Partida p2("Clasificatoria", "Grieta del Invocador");
+
+    cout << endl;
+    p1.iniciar_partida();
+
+    cout << endl;
+
+// Torretas
+    cout <<"-----------"<< endl;
+    cout <<" Torretas"<< endl;
+    cout <<"-----------"<< endl;
+
+    cout << endl;    
+    Torretas lamentos(250, 5000, 1, 8);
+    Torretas ginvocador(250, 5000, 1, 8);
+
+    lamentos.atacarT();
+    ginvocador.caer();
+
+    cout << endl;
+
+// Minions
+    cout <<"----------"<< endl;
+    cout <<" Minions"<< endl;
+    cout <<"----------"<< endl;
+    
+    
+    Minions normal("Normal", 50, 25);
+    Minions mago("Mago", 70, 35);
+    Minions tanque("Tanque", 350, 60);
+
+    normal.atacar_torreta();
+    mago.soltar_oro();
+    tanque.morirM();
+
+    cout << endl;
+
+// Criaturas
+    cout <<"-----------"<< endl;
+    cout <<" Criaturas"<< endl;
+    cout <<"-----------"<< endl;
+    
+    Criaturas c1("Corrupta", "El Heraldo", 8000, 105);
+    Criaturas c2("Dragon", "Dragon Infernal", 4000, 86);
+    Criaturas c3("Escarabajo", "Criatura de rio", 200, 0);
+
+    c1.atacar_jugador();
+    c2.informacionC();
+    c3.morirC();
+
+
+    cout << endl;
+
+// Jugadores_ingame
+    cout <<"-----------"<< endl;
+    cout <<"Jugadores"<< endl;
+    cout <<"-----------"<< endl;
+    
+    Jugador j1("Xayah",5, 613, 147, 360);
+    Jugador j2("Jax",7, 175, 630, 130);
+    Jugador j3("Neeko",14, 1400, 850, 1460);
+    Jugador j4("Rakan",2, 405, 250, 205);
+    Jugador j5("Zoe",16, 2600, 1700, 4795);
+
+
+    j1.atacar();
+    j2.morir();
+    j3.tp();
+
+    cout << endl;
+
+// Objetos
+    cout <<"-----------"<< endl;
+    cout <<" Objetos"<< endl;
+    cout <<"-----------"<< endl;
+    
+    Objetos o1("Varita explosiva","+40 de poder de habilidad", 850);
+    Objetos o2("Cuchilla Negra", "+50 de año de ataque, +400 de vida, +30 de velocidad de habilidades", 3000);
+    Objetos o3("Hoja del rey arruinado", "+40 de daño de ataque, +25 de velocidad de ataque, +10 de robo de vida",3200 );
+
+    o1.comprar();
+    o2.comprar();
+    o3.comprar();
+
+
+    cout << endl;
+
+    cout <<"-------------------------"<< endl;
+    cout <<" Final de la Partida"<< endl;
+    cout <<"-------------------------"<< endl;
+
+    inv3.reportar();
+
+    return 0;
+}
